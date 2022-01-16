@@ -26,14 +26,12 @@ const StatisticsItemStyle = styled.li`
   }
 `;
 
-export default function Statistics({ options, total, positivePercentage }) {
+export default function Statistics({ good, neutral, bad, total, positivePercentage }) {
   return (
     <StatisticsListStyle>
-      {Object.entries(options).map(([key, value]) => (
-        <StatisticsItemStyle key={key}>
-          {key}: {value}
-        </StatisticsItemStyle>
-      ))}
+      <StatisticsItemStyle>Good: {good}</StatisticsItemStyle>
+      <StatisticsItemStyle>Neutral: {neutral}</StatisticsItemStyle>
+      <StatisticsItemStyle>Bad: {bad}</StatisticsItemStyle>
       <StatisticsItemStyle>Total: {total}</StatisticsItemStyle>
       <StatisticsItemStyle>Positive feedback: {positivePercentage} %</StatisticsItemStyle>
     </StatisticsListStyle>
@@ -41,7 +39,9 @@ export default function Statistics({ options, total, positivePercentage }) {
 }
 
 Statistics.propTypes = {
-  options: PropTypes.object.isRequired,
+  good: PropTypes.number.isRequired,
+  neutral: PropTypes.number.isRequired,
+  bad: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
   positivePercentage: PropTypes.number.isRequired,
 };
